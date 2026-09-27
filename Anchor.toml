@@ -8,13 +8,15 @@ skip-lint = false
 fundraiser = "Eoiuq1dXvHxh6dLx3wh9gj8kSAUpga11krTrbfF5XYsC"
 
 [programs.localnet]
-fundraiser = "7WferfAMCt6f32DYucuQNhnSYdoV7SWSR92od8t1jDzW"
+fundraiser = "782tKuH7KTSEmiZmUFL8Wvyh1Kk7d2bRbVDHz2wYKCXP"
 
 [provider]
 cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
-test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+# Named explicitly: bash's `tests/**/*.ts` does not recurse without globstar,
+# so the original glob silently matched only tests/helpers/kit-adapter.ts.
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/codama.ts tests/fundraiser.ts tests/helpers/kit-adapter.ts tests/time-window-bankrun.ts tests/time-window.ts"
 
 [hooks]
